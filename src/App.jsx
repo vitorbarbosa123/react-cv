@@ -1,24 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import './App.css'
 
 function App() {
- 
-  const [mensage, setMensage] = useState('')
+
   const [inputValue, setInputValue] = useState('')
+  const [imageValue, setImageValue] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleImage = async (event) => {
     event.preventDefault();
-    axios.post('http://127.0.0.1:5000/images', { input_value: inputValue})
+    try {
+      await axios.post('http://127.0.0.1:5000/images', { input_value: inputValue})
       .then(response => {
-        setMensage(response.data.mensage)
+        setImageValue(response.data);
       })
-      .catch(error => {
-        console.log(error)
-      })
+    } catch(error){
+      console.error(error);
+    }
   }
-
   const handleChange = (event) => {
     setInputValue(event.target.value)
   }
@@ -28,18 +28,21 @@ function App() {
       <p>
         Upload de arquivo
       </p>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
           value={inputValue}
           onChange={handleChange}
           placeholder="link"
         />
-        <button type="submit">Enviar</button>
+        <button onClick={handleImage}>Enviar</button>
       </form>
-      <p>{mensage}</p>
+      <div>
+        {imageValue && <img src="http://127.0.0.1:5000/images"/>}
+      </div>
     </div>
   )
 }
+
 
 export default App
