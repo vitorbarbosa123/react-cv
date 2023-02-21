@@ -46,7 +46,8 @@ def caixa_texto(i, resultado, img, cor = (255,100,0)):
     return x,y, img
 
 def cria_documento(file_name, texto):
-    arquivo = open(file_name + ".txt", 'a')
+    path = f"textos/{file_name}"
+    arquivo = open(path + ".txt", 'a')
     arquivo.write(texto + '\n')
     arquivo.close()
 
