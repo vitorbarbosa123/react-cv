@@ -25,11 +25,13 @@ def trataImagem(url):
             if not texto.isspace() and len(texto) > 1:
                 x, y, img = caixa_texto(i, resultado, img_copia)
                 img_copia = escreve_texto(resultado, min_conf, texto, x, y, img_copia, font, 12)
-
-    window_name = "image"
-    cv2.imshow(window_name, img_copia)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    
+    img_copia = Image.fromarray(img_copia.astype('uint8'))
+  
+    img_copia.save("images/image.jpg", 'JPEG')
+   
+    
+    return img_copia
 
 
 # Auxiliares
