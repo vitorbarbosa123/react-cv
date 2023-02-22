@@ -27,3 +27,6 @@ __pycache__
 react-pln
 *.txt
 package-lock.json
+
+images
+textos
