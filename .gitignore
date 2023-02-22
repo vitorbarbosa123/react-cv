@@ -25,7 +25,7 @@ dist-ssr
 
 __pycache__
 react-pln
-*.txt
+
 package-lock.json
 
 images
