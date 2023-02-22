@@ -4,7 +4,7 @@ aplicação que detecta textos em uma imagem qualquer de internet
 
 ![reactpln](https://user-images.githubusercontent.com/51303068/220518067-299647fd-199c-4b2f-a3bd-d524edaf3a36.gif)
 
-O objetivo dessa aplicação é exemplificar o inicio dos meus estudos com processamento de linguagem natural. 
+O objetivo dessa aplicação é exemplificar o inicio dos meus estudos com vis. 
 Qualquer eventual melhoria ou correção pode ser relatado :)
 
 #### Instalação
