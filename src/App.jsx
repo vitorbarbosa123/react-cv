@@ -9,6 +9,7 @@ function App() {
   const [inputValue, setInputValue] = useState('')
   const [imageValue, setImageValue] = useState('')
   const [textValue, setTextValue] = useState('')
+  const [errorValue, setErrorValue] = useState('')
   
   const handleImage = async (event) => {
       event.preventDefault()
@@ -16,6 +17,7 @@ function App() {
         await axios.post('http://127.0.0.1:5000/images', { input_value: inputValue })
         .then(response => {
           setImageValue(response.config.url);
+          setErrorValue('')
         })
         
         axios.get('http://127.0.0.1:5000/images' , {
@@ -35,7 +37,7 @@ function App() {
           setTextValue(response.data)
         })
       } catch(error){
-        console.error(error);
+        setErrorValue(error.message)
       }
     }
  
@@ -45,9 +47,9 @@ function App() {
 
   return (
     <div className="App">
-      <p>
-        Upload de arquivo
-      </p>
+
+      <h2>Processamento de textos em imagem</h2>
+      <p>Envie uma imagem da web e remova o texto contida nela</p>
       <form>
         <input
           type="text"
@@ -57,13 +59,23 @@ function App() {
         />
         <button onClick={handleImage}>Enviar</button>
       </form>
+      {
+        errorValue && <p style={{"fontWeight": "bold", color: "coral"}}>Link inválido, por favor troque-o</p>
+      }
       <div>
-        {imageValue && <img src={imageValue}/>}
-        {textValue && <p>{textValue}</p>}
+        {imageValue && 
+        <div>
+          <h4>Imagem tratada:</h4>
+          <img className='img' src={imageValue}/>
+        </div>}
       </div>
+      {textValue && 
+        <div className='text-wrapper'>
+          <h4>Texto: </h4>
+          {textValue}</div>
+      }
     </div>
   )
 }
-
 
 export default App
