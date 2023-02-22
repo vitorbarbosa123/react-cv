@@ -10,13 +10,17 @@ CORS(app)
 url = None
 
 @app.route('/images', methods=['POST', 'GET'])
-async def image():
+def image():
     if request.method == 'POST':
         global url
         url = request.json['input_value']
         trataImagem(url)
     
     return send_file('images/image.jpg', mimetype='image/jpeg')
+
+@app.route('/text', methods=['GET'])
+def text():
+    return send_file('textos/texto.txt')
 
 if __name__ == '__main__':
     app.run(debug = True)
