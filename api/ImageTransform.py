@@ -3,8 +3,8 @@ import numpy as np
 import cv2
 from pytesseract import Output
 from PIL import ImageFont, ImageDraw, Image
-import re
 from skimage import io
+import os
 
 def trataImagem(url):
     img = io.imread(url)
@@ -28,6 +28,9 @@ def trataImagem(url):
     
     img_copia = Image.fromarray(img_copia.astype('uint8'))
   
+    if not os.path.exists("images"):
+        os.makedirs("images")
+        
     img_copia.save("images/image.jpg", 'JPEG')
    
     
@@ -46,8 +49,9 @@ def caixa_texto(i, resultado, img, cor = (255,100,0)):
     return x,y, img
 
 def cria_documento(file_name, texto):
-    path = f"textos/{file_name}"
-    arquivo = open(path + ".txt", 'a')
+    if not os.path.exists("textos"):
+        os.makedirs("textos")
+    arquivo = open(f"textos/{file_name}.txt", 'a')
     arquivo.write(texto + '\n')
     arquivo.close()
 
