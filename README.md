@@ -1,4 +1,4 @@
-## React + PLN
+## React + CV
 
 aplicação que detecta textos em uma imagem qualquer de internet
 
@@ -22,8 +22,8 @@ PS: Os comandos estão para a distribuição manjaro, caso esteja em outra distr
 Após isso é recomendado a utilização de um ambiente virtual, com isso:
 
 ```bash
-virtualenv reactPln
-source reactPln/bin/activate
+virtualenv reactCv
+source reactCv/bin/activate
 ```
 Depois instale as dependências do python:
 
